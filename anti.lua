@@ -7,7 +7,7 @@ local inicfg = require 'inicfg'
 
 update_state = false
 
-local script_vers = 1
+local script_vers = 2
 local script_vers_text = "1.02"
 
 local update_url = "https://raw.githubusercontent.com/Pattersonsoo/test/main/update.ini"
@@ -41,7 +41,7 @@ function main()
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("Есть обновление! Версия: " .. updateIni.info.vers_text, -1)
+                sampAddChatMessage("Г…Г±ГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ! Г‚ГҐГ°Г±ГЁГї: " .. updateIni.info.vers_text, -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -54,7 +54,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("Скрипт успешно обновлен!", -1)
+                    sampAddChatMessage("Г‘ГЄГ°ГЁГЇГІ ГіГ±ГЇГҐГёГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­!", -1)
                     thisScript():reload()
                 end
             end)
