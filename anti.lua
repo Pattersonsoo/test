@@ -10,7 +10,7 @@ u8 = encoding.UTF8
 update_state = false
 
 local script_vers = 1
-local script_vers_text = "1.01"
+local script_vers_text = "1.02"
 
 local update_url = "https://raw.githubusercontent.com/Pattersonsoo/test/main/update.ini" 
 local update_path = getWorkingDirectory() .. "/update.ini" 
