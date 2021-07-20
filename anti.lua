@@ -42,7 +42,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("крипт успешно обновлен!", -1)
+                    sampAddChatMessage("Скрипт успешно обновлен!", -1)
                     thisScript():reload()
                 end
             end)
@@ -50,9 +50,6 @@ function main()
         end
 
 	end
-end
-
-function main()
     while not isSampAvailable() do wait(0) end
     while true do
         wait(0)
