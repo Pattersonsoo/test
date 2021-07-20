@@ -10,7 +10,7 @@ u8 = encoding.UTF8
 update_state = false
 
 local script_vers = 1
-local script_vers_text = "1.00"
+local script_vers_text = "1.01"
 
 local update_url = "https://raw.githubusercontent.com/Pattersonsoo/test/main/update.ini" 
 local update_path = getWorkingDirectory() .. "/update.ini" 
@@ -31,20 +31,20 @@ end
 
 
 function update()
-  local fpath = os.getenv('TEMP') .. '\\testing_version.json' -- куда будет качаться наш файлик для сравнения версии
-  downloadUrlToFile('https://raw.githubusercontent.com/Pattersonsoo/test/main/update.ini', fpath, function(id, status, p1, p2) -- ссылку на ваш гитхаб где есть строчки которые я ввёл в теме или любой другой сайт
+  local fpath = os.getenv('TEMP') .. '\\testing_version.json' -- ГЄГіГ¤Г  ГЎГіГ¤ГҐГІ ГЄГ Г·Г ГІГјГ±Гї Г­Г Гё ГґГ Г©Г«ГЁГЄ Г¤Г«Гї Г±Г°Г ГўГ­ГҐГ­ГЁГї ГўГҐГ°Г±ГЁГЁ
+  downloadUrlToFile('https://raw.githubusercontent.com/Pattersonsoo/test/main/update.ini', fpath, function(id, status, p1, p2) -- Г±Г±Г»Г«ГЄГі Г­Г  ГўГ Гё ГЈГЁГІГµГ ГЎ ГЈГ¤ГҐ ГҐГ±ГІГј Г±ГІГ°Г®Г·ГЄГЁ ГЄГ®ГІГ®Г°Г»ГҐ Гї ГўГўВёГ« Гў ГІГҐГ¬ГҐ ГЁГ«ГЁ Г«ГѕГЎГ®Г© Г¤Г°ГіГЈГ®Г© Г±Г Г©ГІ
     if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-    local f = io.open(fpath, 'r') -- открывает файл
+    local f = io.open(fpath, 'r') -- Г®ГІГЄГ°Г»ГўГ ГҐГІ ГґГ Г©Г«
     if f then
-      local info = decodeJson(f:read('*a')) -- читает
+      local info = decodeJson(f:read('*a')) -- Г·ГЁГІГ ГҐГІ
       updatelink = info.updateurl
       if info and info.latest then
-        version = tonumber(info.latest) -- переводит версию в число
-        if version > tonumber(thisScript().version) then -- если версия больше чем версия установленная то...
-          lua_thread.create(goupdate) -- апдейт
-        else -- если меньше, то
-          update = false -- не даём обновиться
-          sampAddChatMessage(('[Testing]: У вас и так последняя версия! Обновление отменено'), color)
+        version = tonumber(info.latest) -- ГЇГҐГ°ГҐГўГ®Г¤ГЁГІ ГўГҐГ°Г±ГЁГѕ Гў Г·ГЁГ±Г«Г®
+        if version > tonumber(thisScript().version) then -- ГҐГ±Г«ГЁ ГўГҐГ°Г±ГЁГї ГЎГ®Г«ГјГёГҐ Г·ГҐГ¬ ГўГҐГ°Г±ГЁГї ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г­Г Гї ГІГ®...
+          lua_thread.create(goupdate) -- Г ГЇГ¤ГҐГ©ГІ
+        else -- ГҐГ±Г«ГЁ Г¬ГҐГ­ГјГёГҐ, ГІГ®
+          update = false -- Г­ГҐ Г¤Г ВёГ¬ Г®ГЎГ­Г®ГўГЁГІГјГ±Гї
+          sampAddChatMessage(('[Testing]: Г“ ГўГ Г± ГЁ ГІГ ГЄ ГЇГ®Г±Г«ГҐГ¤Г­ГїГї ГўГҐГ°Г±ГЁГї! ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г®ГІГ¬ГҐГ­ГҐГ­Г®'), color)
         end
       end
     end
@@ -53,12 +53,12 @@ end)
 end
 
 function goupdate()
-sampAddChatMessage(('[Testing]: Обнаружено обновление. AutoReload может конфликтовать. Обновляюсь...'), color)
-sampAddChatMessage(('[Testing]: Текущая версия: '..thisScript().version..". Новая версия: "..version), color)
+sampAddChatMessage(('[Testing]: ГЋГЎГ­Г Г°ГіГ¦ГҐГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. AutoReload Г¬Г®Г¦ГҐГІ ГЄГ®Г­ГґГ«ГЁГЄГІГ®ГўГ ГІГј. ГЋГЎГ­Г®ГўГ«ГїГѕГ±Гј...'), color)
+sampAddChatMessage(('[Testing]: Г’ГҐГЄГіГ№Г Гї ГўГҐГ°Г±ГЁГї: '..thisScript().version..". ГЌГ®ГўГ Гї ГўГҐГ°Г±ГЁГї: "..version), color)
 wait(300)
-downloadUrlToFile(updatelink, thisScript().path, function(id3, status1, p13, p23) -- качает ваш файлик с latest version
+downloadUrlToFile(updatelink, thisScript().path, function(id3, status1, p13, p23) -- ГЄГ Г·Г ГҐГІ ГўГ Гё ГґГ Г©Г«ГЁГЄ Г± latest version
   if status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-  sampAddChatMessage(('[Testing]: Обновление завершено!'), color)
+  sampAddChatMessage(('[Testing]: ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г§Г ГўГҐГ°ГёГҐГ­Г®!'), color)
   thisScript():reload()
 end
 end)
