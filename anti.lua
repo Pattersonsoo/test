@@ -50,9 +50,10 @@ function main()
             end)
             break
         end
-
 	end
-    while not isSampAvailable() do wait(0) end
+end
+
+	function main()
     while true do
         wait(0)
         if isKeyDown(0x72) and not sampIsChatInputActive() and not sampIsDialogActive() then
