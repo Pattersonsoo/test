@@ -4,6 +4,7 @@ local inicfg = require 'inicfg'
 local keys = require "vkeys"
 local imgui = require 'imgui'
 local encoding = require 'encoding'
+encoding.default = 'CP1251'
 
 update_state = false
 
@@ -29,7 +30,7 @@ function main()
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("Есть обновление! Версия: " .. updateIni.info.vers_text, -1)
+                sampAddChatMessage("Р•СЃС‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ! Р’РµСЂСЃРёСЏ: " .. updateIni.info.vers_text, -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -42,7 +43,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("Скрипт успешно обновлен!", -1)
+                    sampAddChatMessage("РЎРєСЂРёРїС‚ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅ!", -1)
                     thisScript():reload()
                 end
             end)
