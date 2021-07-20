@@ -5,7 +5,7 @@ local keys = require "vkeys"
 local imgui = require 'imgui'
 local encoding = require 'encoding'
 encoding.default = 'CP1251'
-
+u8 = encoding.UTF8
 update_state = false
 
 local script_vers = 3
