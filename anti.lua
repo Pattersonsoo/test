@@ -51,9 +51,7 @@ function main()
             break
         end
 	end
-end
 
-	function main()
     while true do
         wait(0)
         if isKeyDown(0x72) and not sampIsChatInputActive() and not sampIsDialogActive() then
